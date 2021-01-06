@@ -1,0 +1,5 @@
+# TIC TAC TOE WITH MINIMAX ALGORITHM AND ALPHA BETA PRUNING
+
+ ![Screenshot](Screenshot.png)
+
+
