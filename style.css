@@ -1,0 +1,79 @@
+body {
+     display: grid;
+     align-items: center;
+     justify-content: center;
+     background-color: #142850;
+}
+ h1 {
+     margin: 30px;
+     font-family: 'Lobster', cursive;
+     text-shadow: 5px 0 #232931;
+     font-size: 8rem;
+     color: #00909e;
+}
+ .board {
+     width: 610px;
+     height:610px;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-content: center;
+     justify-items: center;
+     align-items: center;
+}
+ .cell {
+     height:200px;
+     width:200px;
+     text-align: center;
+     border: 2px solid #dae1e7;
+     background-color: #27496d;
+     font-size: 160px;
+     color: #dae1e7;
+     font-family: sans-serif;
+     font-weight: 100;
+}
+ .cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
+     border-top: none;
+}
+ .cell:nth-child(3n + 1) {
+     border-left: none;
+}
+ .cell:nth-child(3n + 3) {
+     border-right: none;
+}
+ .cell:last-child, .cell:nth-child(8), .cell:nth-child(7) {
+     border-bottom: none;
+}
+ .zero {
+     color: #00909e;
+}
+ .result {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: rgba(0, 0, 0, .9);
+     justify-content: center;
+     align-items: center;
+     color: white;
+     font-size: 5rem;
+     flex-direction: column;
+}
+ .result button {
+     font-size: 3rem;
+     background-color: white;
+     border: 1px solid black;
+     padding: .25em .5em;
+     cursor: pointer;
+}
+ .result button:hover {
+     background-color: black;
+     color: white;
+     border-color: white;
+}
+ .result.show {
+     display: flex;
+}
+ 
