@@ -21,8 +21,10 @@
             i.textContent = '';
             i.classList.remove('zero');
         });
+
         playGame();
     }
+
     startGame();
 
     button.addEventListener('click', () => {
@@ -57,35 +59,32 @@
 
     function playGame() {
         for (let i = 0; i < 9; i++) {
-            cell[i].addEventListener('click', () => handleClick(i), {
+            cell[i].addEventListener('click', () => {
+                if (chosen.includes(i))
+                    return;
+
+                cell[i].append('X');
+                board[Math.floor(i / 3)][i % 3] = 'X';
+
+                chosen.push(i);
+
+                if (checkWinner('X')) {
+                    result.classList.add('show');
+                    resultText.textContent = 'Player 1 Won';
+                    return;
+                }
+
+                if (chosen.length == 9) {
+                    result.classList.add('show');
+                    resultText.textContent = 'Tie';
+                    return;
+                }
+
+                bestMove();
+            }, {
                 once: true
             });
         }
-    }
-
-    function handleClick(i) {
-
-        if (chosen.includes(i))
-            return;
-
-        cell[i].append('X');
-        board[Math.floor(i / 3)][i % 3] = 'X';
-
-        chosen.push(i);
-
-        if (checkWinner('X')) {
-            result.classList.add('show');
-            resultText.textContent = 'Player 1 Won';
-            return;
-        }
-
-        if (chosen.length == 9) {
-            result.classList.add('show');
-            resultText.textContent = 'Tie';
-            return;
-        }
-
-        bestMove();
     }
 
     function bestMove() {
@@ -163,7 +162,6 @@
                         board[i][j] = 'X';
                         let score = miniMax(board, true, alpha, beta);
                         board[i][j] = '';
-                        // console.log(score)
                         bestScore = Math.min(score, bestScore);
                         beta = Math.min(beta, score);
                         if (alpha >= beta)
